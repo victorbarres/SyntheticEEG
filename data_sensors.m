@@ -7,9 +7,13 @@
 
 function data_sensors(varargin)
 
+options  = {'Random sampling', 'Top head', 'Default elec cap'};
+
 if isempty(varargin)
     subjName = getSubjName();
-    options  = {'Random sampling', 'Top head', 'Default elec cap'};
+    choice = getChoice(options,'Select sensor type:','single');
+elseif length(varargin)==1
+    subjName = varargin{1};
     choice = getChoice(options,'Select sensor type:','single');
 else
     subjName = varargin{1};

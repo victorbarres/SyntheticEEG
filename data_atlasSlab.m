@@ -12,6 +12,13 @@ if isempty(varargin)
     ansArea = getAreaName(atlasName);
     areaName = ansArea.areaName;
     areaIndex = ansArea.areaIndex;
+elseif length(varargin)==1
+    subjName = varargin{1};
+    slabName = inputSlabName();
+    atlasName = getAtlasName();
+    ansArea = getAreaName(atlasName);
+    areaName = ansArea.areaName;
+    areaIndex = ansArea.areaIndex;
 else
     subjName = varargin{1};
     slabName = varargin{2};

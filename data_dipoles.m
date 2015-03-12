@@ -13,6 +13,11 @@ if isempty(varargin)
     ansSlab = getSlabName(subjName);
     slabName = ansSlab.slabName;
     slabIndex = ansSlab.slabIndex;
+elseif length(varargin)==1
+    subjName = varargin{1};
+    ansSlab = getSlabName(subjName);
+    slabName = ansSlab.slabName;
+    slabIndex = ansSlab.slabIndex;
 else
     subjName = varargin{1};
     slabIndex = varargin{2};

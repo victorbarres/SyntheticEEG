@@ -5,7 +5,7 @@
 
 function run()
 %Parameters
-data_Path = 'data';
+data_path = 'data';
 
 % Create simulation folder
 sim_name = inputSimName('Enter simulation name:');
@@ -23,53 +23,63 @@ mesh_path = sprintf('data\\%s\\meshes.mat',mesh_name);
 copyfile(mesh_path,sprintf('%s\\meshes.mat',sim_folder));
 fprintf('headmesh selected: %s\n',mesh_name);
 
+pause
+
 % Choose conductivities
 fprintf('Choosing conductivities\n');
-data_cond();
+data_cond(sim_name);
+pause
 
 % Choose sensors
 fprintf('Choosing sensors\n');
-data_sensors();
+data_sensors(sim_name);
+pause
 
 % Create slabs (modules)
 fprintf('Creating modules\n');
-data_AtlasSlabs();
+data_atlasSlab(sim_name);
+pause
 
 % Create dipoles
 fprintf('Creating dipoles\n');
-data_dipoles();
+data_dipoles(sim_name);
 
 % Create circuits
 fprintf('Creating circuits\n');
-data_CircuitsNet();
+data_circuitsNet(sim_name);
+pause
 
-% Cceate forward activation values
+% Create forward activation values
 fprintf('Create forward activation values\n');
-data_fwdActTimes();
+data_fwdActTimes(sim_name);
+pause
 
 % Create impulse response function (IRF)
 fprintf('Creating IRF\n');
-data_IRF();
+data_IRF(sim_name);
+pause
 
 % Generate dipoles' amplitude boxcar timecourse
 fprintf('Generating boxcar timecourse\n');
-data_dipBoxcar();
+data_dipBoxcar(sim_name);
+pause
 
 % Generate dipoles' amplitude waveform timecourse
 fprintf('Generating waveform timecourse\n');
-data_sourceWave();
+data_sourceWave(sim_name);
+pause
 
-% Generate leadfield for dipoles of amplitude 1
-fprintf('Generating leadfield\n');
-data_leadFieldGenerator();
-
-% Generate EEG signal based on dipoles amplitudes timecourses
-fprintf('Generating EEG signal\n');
-data_leadfield();
-
-% Create EEG data for an electrode
-fprintf('Generate EEG data for an electrode\n');
-data_elecEEG(); % Check what is the difference with data_elecEEG2()
+% % Generate leadfield for dipoles of amplitude 1
+% fprintf('Generating leadfield\n');
+% data_leadFieldGenerator(sim_name);
+% 
+% % Generate EEG signal based on dipoles amplitudes timecourses
+% fprintf('Generating EEG signal\n');
+% data_leadfield(sim_name);
+% 
+% % Create EEG data for an electrode
+% fprintf('Generate EEG data for an electrode\n');
+% data_elecEEG(); % Check what is the difference with data_elecEEG2()
 end
 
 
