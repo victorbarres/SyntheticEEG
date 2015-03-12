@@ -110,3 +110,5 @@ What is cfg.mat in a subject folder? -> The input to fieldTrip.
 
 Important: The code uses triplot function -> This is the fieldtrip/private function and not the default matlab function!
 -> So make sure Fieldtrip is on the Matlab path.
+
+Issue with biograph... But really using the module system should be optional..
