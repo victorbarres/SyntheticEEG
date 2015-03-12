@@ -8,7 +8,7 @@ function run()
 data_path = 'data';
 
 % Create or load simulation
-listOption = {'Create new sim', 'Load sim', 'Display conductivities options', 'Display electrodes options', 'Display atlases', 'Done!'};
+listOption = {'Create new sim', 'Load sim', 'Display conductivities options', 'Display electrodes options', 'Display atlases', 'Display ERP empirical data', 'Done!'};
 prompt = 'Select option';
 mode = 'single'
 
@@ -42,6 +42,9 @@ while ~done_run
             % Display atlases
             disp_atlas();
         case 6
+            % Display ERP empirical data
+            sed_ERP();
+        case 7
             % DONE!
             done_run = true;
     end
