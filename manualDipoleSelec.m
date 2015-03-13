@@ -1,14 +1,14 @@
 function manualDipoleSelec(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
+simPath = sprintf('simulations\\%s',simName);
 
-load(sprintf('%s\\dipoles',subjPath));
+load(sprintf('%s\\dipoles',simPath));
 
 switch (length(varargin)-1)
     case 1
@@ -41,9 +41,9 @@ newDipoles.dipLength(list) = [];
 newDipoles.dipLength = repmat(magnitude,size(newDipoles.dipLength));
 newDipoles.dipNorm = newDipoles.dipOrient.*repmat(newDipoles.dipLength,1,3);
 
-save(sprintf('%s\\OldDipoles',subjPath),'dipoles');
+save(sprintf('%s\\OldDipoles',simPath),'dipoles');
 dipoles = newDipoles;
-save(sprintf('%s\\dipoles',subjPath),'dipoles');
+save(sprintf('%s\\dipoles',simPath),'dipoles');
 end
 
 %% SubFunctions
@@ -68,5 +68,6 @@ p = 'Enter dipole magnitude in cm2:';
 t = 'Magnitude';
 d = '3';
 val = getInput(p,t,d);
+val = str2double(val);
 val = val*10^-4;
 end

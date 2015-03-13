@@ -3,19 +3,18 @@
 % USC Brain Project
 % Select a mesh
 
-function meshType = getMeshType(subjName)
-
-load(sprintf('data\\%s\\meshes',subjName));
+function meshType = getMeshType(sim_name)
+sim_path = 'simulations';
+load(sprintf('%s\\%s\\meshes',sim_path, sim_name));
 listMesh = {meshes.mesh.Comment};
 listMesh{length(listMesh)+1} = 'fullhead';
 listMesh{length(listMesh)+1} = 'realbrain';
 
-v=0;
-while v==0
+done = false;
+while ~done
     prompt ='Select mesh:';
-    [meshIndex,v] = listdlg('PromptString',prompt,...
-        'SelectionMode','single',...
-        'ListString',listMesh);
+    option = getOption(listMesh, prompt,'single');
+    done = option.ok;
 end
-meshType= listMesh{meshIndex};
+meshType= listMesh{option.ind};
 end

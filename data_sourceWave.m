@@ -7,15 +7,15 @@
 function data_sourceWave(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
+simPath = sprintf('simulations\\%s',simName);
 
-load(sprintf('%s\\dBoxcar',subjPath));
-load(sprintf('%s\\IRF',subjPath));
+load(sprintf('%s\\dBoxcar',simPath));
+load(sprintf('%s\\IRF',simPath));
 
 
 time = dBoxcar(1).time;
@@ -36,7 +36,7 @@ for d=1:length(dBoxcar)
     waveform.wave{d} = w';
 end
 
-save(sprintf('%s\\waveform',subjPath),'waveform');
+save(sprintf('%s\\waveform',simPath),'waveform');
 
-disp_wave(subjName);
+disp_wave(simName);
 end

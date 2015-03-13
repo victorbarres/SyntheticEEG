@@ -6,14 +6,14 @@
 function disp_mesh(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
-    meshType = getMeshType(subjName);
+    simName = getSimName();
+    meshType = getMeshType(simName);
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     meshType = varargin{2};
 end
 
-path = sprintf('data\\%s\\',subjName);
+path = sprintf('simulations\\%s\\',simName);
 load(sprintf('%s\\meshes.mat',path));
 numMeshes = length(meshes.mesh);
 

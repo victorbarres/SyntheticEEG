@@ -1,8 +1,8 @@
 % 05-2012
 % Victor Barres
 % USC Brain Project
-% Script to create the sensors data structure for a subject
-% Requires for the subject:
+% Script to create the sensors data structure for a simulation
+% Requires for the simulation:
 % - meshes
 
 function data_sensors(varargin)
@@ -10,24 +10,24 @@ function data_sensors(varargin)
 options  = {'Random sampling', 'Top head', 'Default elec cap'};
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
     choice = getChoice(options,'Select sensor type:','single');
 elseif length(varargin)==1
-    subjName = varargin{1};
+    simName = varargin{1};
     choice = getChoice(options,'Select sensor type:','single');
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     choice = varargin{2};
 end
 
 % Loading data
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\meshes.mat',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\meshes.mat',simPath));
 
 headIndex = findMesh(meshes,'head');
 head = meshes.mesh(headIndex);
 
-sensors.subjName = subjName;
+sensors.simName = simName;
 sensors.type = options{choice};
 sensors.density = 1;
 
@@ -59,17 +59,17 @@ switch choice
             error('Sensor creation aborted');
         end
         
-        %% Checking subj and head compatibility
+        %% Checking sim and head compatibility
         elecHead = elec.headName;
-        elecSubj = elec.subjName;
-        subjHead = meshes.fromNames{4};
+        elecSim = elec.simName;
+        simHead = meshes.fromNames{4};
         
-        fprintf('Current subj name: %s\n',subjName);
-        fprintf('Elec subj name: %s\n',elecSubj);
-        fprintf('Subj head model: %s\n',subjHead);
+        fprintf('Current sim name: %s\n',simName);
+        fprintf('Elec sim name: %s\n',elecSim);
+        fprintf('Sim head model: %s\n',simHead);
         fprintf('Elec head model: %s\n',elecHead);       
-        if ~strcmp(elecHead,subjHead)
-            error('Uncompatible elec and subject');
+        if ~strcmp(elecHead,simHead)
+            error('Uncompatible elec and simulation');
         end
         
         prompt = 'Choose electrodes:';
@@ -81,8 +81,8 @@ switch choice
         error('Invalid option');
 end
 
-save(sprintf('%s\\sensors.mat',subjPath),'sensors');
-disp_sensors(subjName)
+save(sprintf('%s\\sensors.mat',simPath),'sensors');
+disp_sensors(simName)
 
 end
 

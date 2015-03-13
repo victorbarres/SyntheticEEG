@@ -10,18 +10,17 @@ disp('FOR EACH DIPOLE THE REFERENCE POTENTIAL IS THE AVERAGE LEADFIELD OF THE DI
 disp('FOR THE TOTAL LEADFIELD, THE REFERENCE POTENTIAL IS THE AVERAGE LEADFIELD!!!')
 
 if isempty(varargin)
-    subjName = getSubjName();
-    path = sprintf('data\\%s\\',subjName);
+    simName = getSimName();
+    path = sprintf('simulations\\%s\\',simName);
     load(sprintf('%s\\dipoles.mat',path));
     dipList = getDipList(dipoles);
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     dipList = varargin{2};
-    path = sprintf('data\\%s\\',subjName);
+    path = sprintf('simulations\\%s\\',simName);
     load(sprintf('%s\\dipoles.mat',path));
 end
 
-% path = sprintf('data\\%s\\',subjName);
 load(sprintf('%s\\grid.mat',path));
 load(sprintf('%s\\meshes.mat',path));
 % load(sprintf('%s\\dipoles.mat',path));

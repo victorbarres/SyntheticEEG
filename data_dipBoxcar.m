@@ -7,14 +7,14 @@
 function data_dipBoxcar(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\dipoles',subjPath));
-load(sprintf('%s\\fwdActiv',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\dipoles',simPath));
+load(sprintf('%s\\fwdActiv',simPath));
 
 dip2slab = dipoles.dip2slab;
 numPoints = length(fwdActiv.time);
@@ -35,6 +35,6 @@ for d=1:length(dip2slab)
 end
 
 
-save(sprintf('%s\\dBoxcar',subjPath),'dBoxcar');
-disp_dBoxcar(subjName);
+save(sprintf('%s\\dBoxcar',simPath),'dBoxcar');
+disp_dBoxcar(simName);
 end

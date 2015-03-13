@@ -7,14 +7,14 @@
 function data_dipdA(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\dipoles',subjPath));
-load(sprintf('%s\\activ',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\dipoles',simPath));
+load(sprintf('%s\\activ',simPath));
 
 dip2slab = dipoles.dip2slab;
 numPoints = length(activ.time);
@@ -36,6 +36,6 @@ for d=1:length(dip2slab)
         end
     end
 end
-save(sprintf('%s\\waveform',subjPath),'waveform');
-disp_wave2(subjName);
+save(sprintf('%s\\waveform',simPath),'waveform');
+disp_wave2(simName);
 end

@@ -6,19 +6,19 @@
 function disp_fwdActiv(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-path = sprintf('data\\%s\\',subjName);
+path = sprintf('simulations\\%s\\',simName);
 load(sprintf('%s\\fwdActiv.mat',path));
 
 numBC = length(fwdActiv.brainCircuit);
 
 time = fwdActiv.time;
 figure;
-set(gcf,'name',sprintf('Area boxcar for subj: %s',subjName));
+set(gcf,'name',sprintf('Area boxcar for sim: %s',simName));
 for s =1:numBC
     subplot(numBC,1,s);
     plot(time, fwdActiv.brainCircuit(s).boxcar,'Color','blue','LineWidth',2);

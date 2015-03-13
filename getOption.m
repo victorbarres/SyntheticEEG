@@ -8,4 +8,5 @@ while v==0
 end
 option.ind = optionIndex;
 option.name = listOption(optionIndex);
+option.ok = v;
 end

@@ -6,19 +6,19 @@
 function data_leadfield(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
-    path = sprintf('data\\%s\\',subjName);
+    simName = getSimName();
+    path = sprintf('simulations\\%s\\',simName);
     load(sprintf('%s\\dipoles.mat',path));
     dipList = getDipList(dipoles);
 elseif length(varargin)==1
-    subjName = varargin{1};
-    path = sprintf('data\\%s\\',subjName);
+    simName = varargin{1};
+    path = sprintf('simulations\\%s\\',simName);
     load(sprintf('%s\\dipoles.mat',path));
     dipList = getDipList(dipoles);
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     dipList = varargin{2};
-    path = sprintf('data\\%s\\',subjName);
+    path = sprintf('simulations\\%s\\',simName);
     load(sprintf('%s\\dipoles.mat',path));
 end
 

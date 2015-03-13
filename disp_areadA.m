@@ -6,12 +6,12 @@
 function disp_areadA(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-path = sprintf('data\\%s\\',subjName);
+path = sprintf('simulations\\%s\\',simName);
 load(sprintf('%s\\activ.mat',path));
 
 numA = length(activ.area);
@@ -19,7 +19,7 @@ numA = length(activ.area);
 totalDur = floor(activ.totalDur/activ.timeRes);
 time = activ.time;
 figure;
-set(gcf,'name',sprintf('Area dA for subj: %s',subjName));
+set(gcf,'name',sprintf('Area dA for sim: %s',simName));
 
 M = 0;
 for i=1:numA

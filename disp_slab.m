@@ -6,16 +6,16 @@
 function disp_slab(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
-    ansSlab = getSlabName(subjName);
+    simName = getSimName();
+    ansSlab = getSlabName(simName);
     slabName = ansSlab.slabName;
     slabIndex = ansSlab.slabIndex;
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     slabIndex = varargin{2};
 end
 
-path = sprintf('data\\%s\\',subjName);
+path = sprintf('simulations\\%s\\',simName);
 load(sprintf('%s\\slabs.mat',path));
 load(sprintf('%s\\meshes.mat',path));
 
@@ -47,7 +47,7 @@ bnd.tri = brain.Faces;
 disp('DOES NOT HANDLE PROPERLY SLABS THAT OVERLAP');
 triplot(bnd.pnt, bnd.tri, mask, 'surface'); 
 triplot(bnd.pnt, bnd.tri, mask,'edges');
-set(gcf,'name',sprintf('Slabs for subj: %s',subjName));
+set(gcf,'name',sprintf('Slabs for sim: %s',simName));
 set(gcf,'color','white')
 light('Position',[100 0 0],'Style','infinite');
 light('Position',[0 0 100],'Style','infinite');

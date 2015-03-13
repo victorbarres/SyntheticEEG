@@ -6,13 +6,13 @@
 function disp_wave2(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\waveform',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\waveform',simPath));
 time = waveform(1).time';
 res = waveform(1).time(2) - waveform(1).time(1);
 totalDur = floor(waveform(1).totalDur/res);
@@ -23,7 +23,7 @@ numFig = ceil(numPlot/k);
 
 for f=1:numFig
     figure;
-    set(gcf,'name',sprintf('Dipole dA for subj: %s',subjName));
+    set(gcf,'name',sprintf('Dipole dA for sim: %s',simName));
     m =(f-1)*k+1;
     M =min(f*k,numPlot);
     for p=m:M      

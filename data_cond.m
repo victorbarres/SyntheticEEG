@@ -1,20 +1,20 @@
 % 06-2012
 % Victor Barres
 % USC Brain Project
-% Script to create the conductivity for a subject
+% Script to create the conductivity for a simulations
 
 function data_cond(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-fprintf('Subject: %s\n',subjName);
+simPath = sprintf('simulations\\%s',simName);
+fprintf('Simulations: %s\n',simName);
 cond = getCondVals();
 fprintf('Conductivity: %s\n',cond.name);
-save(sprintf('%s\\cond',subjPath),'cond');
-disp_cond(subjName);
+save(sprintf('%s\\cond',simPath),'cond');
+disp_cond(simName);
 end

@@ -5,12 +5,12 @@
 
 function run()
 %Parameters
-data_path = 'data';
+sim_path = 'simulations';
 
 % Create or load simulation
 listOption = {'Create new sim', 'Load sim', 'Display conductivities options', 'Display electrodes options', 'Display atlases', 'Display ERP empirical data', 'Done!'};
 prompt = 'Select option';
-mode = 'single'
+mode = 'single';
 
 done_run = false;
 while ~done_run
@@ -18,18 +18,19 @@ while ~done_run
     switch option.ind
         case 1
             sim_name = getInput('Enter simulation name:','Sim name','');
-            sim_folder = sprintf('%s\\%s',data_path,sim_name);
+            sim_folder = sprintf('%s\\%s',sim_path,sim_name);
             while isequal(exist(sim_folder, 'dir'),7)
-                sim_name = inputSimName('Name already exist, enter another simulation name:');
-                sim_folder = sprintf('%s\\%s',data_path,sim_name);
+                sim_name = getInput('Name already exist, enter another simulation name:', 'Sim name', '');
+                sim_folder = sprintf('%s\\%s',sim_path,sim_name);
             end
             mkdir(sim_folder);
             fprintf('Simulation name: %s\n',sim_name);
             done_sim = false;
             sim_choice(sim_name, sim_folder, done_sim);
         case 2
-            sim_name = getSubjName();
-            sim_folder = sprintf('%s\\%s',data_path,sim_name);
+            sim_name = getSimName();
+            fprintf('Simulation name: %s\n',sim_name);
+            sim_folder = sprintf('%s\\%s',sim_path,sim_name);
             done_sim = false;
             sim_choice(sim_name, sim_folder, done_sim);
         case 3

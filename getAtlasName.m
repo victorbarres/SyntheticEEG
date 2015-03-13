@@ -8,12 +8,11 @@ function atlasName = getAtlasName()
 d = dir('data\\atlas');
 listAtlas= {d.name};
 
-v=0;
-while v==0
+done = false;
+while ~done
     prompt ='Select atlas:';
-    [atlasIndex,v] = listdlg('PromptString',prompt,...
-        'SelectionMode','single',...
-        'ListString',listAtlas);
+    option= getOption(listAtlas,prompt,'single');
+    done = option.ok;
 end
-atlasName = listAtlas{atlasIndex};
+atlasName = listAtlas{option.ind};
 end

@@ -8,12 +8,11 @@ function sedName = getSedName()
 d = dir('data\\SEDs');
 listSED= {d.name};
 
-v=0;
-while v==0
+done = false;
+while ~done
     prompt ='Select SED:';
-    [sedIndex,v] = listdlg('PromptString',prompt,...
-        'SelectionMode','single',...
-        'ListString',listSED);
+    option = getOption(listSED,prompt,'single');
+    done = option.ok;
 end
-sedName = listSED{sedIndex};
+sedName = option.name;
 end

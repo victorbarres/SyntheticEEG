@@ -6,16 +6,15 @@
 function data_fwdActTimes(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-dataPath = 'data';
-subjPath = sprintf('%s\\%s',dataPath,subjName);
-load(sprintf('%s\\slabs',subjPath));
-load(sprintf('%s\\dipoles',subjPath));
-load(sprintf('%s\\bcGraph',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\slabs',simPath));
+load(sprintf('%s\\dipoles',simPath));
+load(sprintf('%s\\bcGraph',simPath));
 
 namesBC = dipoles.slabNames;
 
@@ -141,9 +140,9 @@ for t=trav
     bcGraph.Nodes(t).userData.boxcar = fwdActiv.brainCircuit(t).boxcar;    
 end
 
-save(sprintf('%s\\fwdActiv',subjPath),'fwdActiv');
-save(sprintf('%s\\bcGraph',subjPath),'bcGraph');
-disp_fwdActiv(subjName);
+save(sprintf('%s\\fwdActiv',simPath),'fwdActiv');
+save(sprintf('%s\\bcGraph',simPath),'bcGraph');
+disp_fwdActiv(simName);
 end
 
 %% Functions

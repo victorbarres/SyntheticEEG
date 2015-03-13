@@ -6,15 +6,14 @@
 function data_circuitsNet(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-dataPath = 'data';
-subjPath = sprintf('%s\\%s',dataPath,subjName);
-load(sprintf('%s\\slabs',subjPath));
-load(sprintf('%s\\dipoles',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\slabs',simPath));
+load(sprintf('%s\\dipoles',simPath));
 namesBC = dipoles.slabNames;
 numBC = length(namesBC);
 listOption = namesBC;
@@ -45,8 +44,8 @@ bcGraph = biograph(netGraph);
 for i=1:numBC
     bcGraph.Nodes(i).Label = namesBC{i};
 end
-save(sprintf('%s\\bcGraph',subjPath),'bcGraph');
-disp_bcGraph(subjName);
+save(sprintf('%s\\bcGraph',simPath),'bcGraph');
+disp_bcGraph(simName);
 end
 %% Functions
 function option= getOption(listOption,prompt,mode)

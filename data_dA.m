@@ -6,14 +6,13 @@
 function data_dA(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-dataPath = 'data';
-subjPath = sprintf('%s\\%s',dataPath,subjName);
-load(sprintf('%s\\ERPdAVal',subjPath));
+simPath = sprintf('simulations\\%s', simName);
+load(sprintf('%s\\ERPdAVal',simPath));
 
 totalDur = ERPdAVal.totalDur;
 timeRes = ERPdAVal.timeRes;
@@ -64,6 +63,6 @@ for i =1:length(ERPdAVal.area)
     activ.area(i).dA(on:on+length(dA)-1) = dA*activ.area(i).activityLevel; 
 end
 
-save(sprintf('%s\\activ',subjPath),'activ');
-disp_areadA(subjName);
+save(sprintf('%s\\activ',simPath),'activ');
+disp_areadA(simName);
 end

@@ -6,20 +6,20 @@
 function disp_dBoxcar(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\dBoxcar',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\dBoxcar',simPath));
 
 numPlot = length(dBoxcar);
 k=4;
 numFig = ceil(numPlot/k);
 for f=1:numFig
     figure;
-    set(gcf,'name',sprintf('Dipole boxcar for subj: %s',subjName));
+    set(gcf,'name',sprintf('Dipole boxcar for sim: %s',simName));
     m =(f-1)*k+1;
     M =min(f*k,numPlot);
     for p=m:M      

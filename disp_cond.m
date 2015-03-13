@@ -1,18 +1,18 @@
 % 05-2012
 % Victor Barres
 % USC Brain Project
-% Script to display the conductivities chosend for a subject
+% Script to display the conductivities chosend for a simulation
 
 function disp_cond(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\cond',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\cond',simPath));
 fprintf('Cond name: %s\n',cond.name);
 fprintf('CondValues:\n');
 disp(cond.vals);

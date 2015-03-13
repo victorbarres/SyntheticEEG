@@ -6,27 +6,27 @@
 function data_atlasSlab(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
     slabName = inputSlabName();
     atlasName = getAtlasName();
     ansArea = getAreaName(atlasName);
     areaName = ansArea.areaName;
     areaIndex = ansArea.areaIndex;
 elseif length(varargin)==1
-    subjName = varargin{1};
+    simName = varargin{1};
     slabName = inputSlabName();
     atlasName = getAtlasName();
     ansArea = getAreaName(atlasName);
     areaName = ansArea.areaName;
     areaIndex = ansArea.areaIndex;
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     slabName = varargin{2};
     atlasName = varargin{3};
     areaIndex = varargin{4};
 end
 
-fprintf('subject selected: %s\n',subjName);
+fprintf('simulation selected: %s\n',simName);
 fprintf('slab name: %s\n',slabName);
 fprintf('atlas selected: %s\n',atlasName);
 fprintf('Plotting slabs selected\n');
@@ -38,30 +38,30 @@ end
 
 dataPath = 'data';
 atlasPath = sprintf('%s\\atlas',dataPath);
-subjPath = sprintf('%s\\%s',dataPath,subjName);
+simPath = sprintf('simulations\\%s',simName);
 
-load(sprintf('%s\\meshes',subjPath));
+load(sprintf('%s\\meshes',simPath));
 load(sprintf('%s\\%s',atlasPath,atlasName));
 
 %% Checking mesh compatibility
 atlasBrain = atlas.brainModel;
-subjBrain = meshes.fromNames{1};
+simBrain = meshes.fromNames{1};
 
-fprintf('Subj brain model: %s\n',subjBrain);
+fprintf('Sim brain model: %s\n',simBrain);
 fprintf('Atlas brain model: %s\n',atlasBrain);
 
-if ~strcmp(atlasBrain,subjBrain)
+if ~strcmp(atlasBrain,simBrain)
     error('Uncompatible brain meshes');
 end
 
 cortex = meshes.realMesh(1);
 
-%% Checking if some slabs exist for the subject
-n = exist(sprintf('%s\\slabs.mat',subjPath),'file');
+%% Checking if some slabs exist for the simect
+n = exist(sprintf('%s\\slabs.mat',simPath),'file');
 if n==2
-    load(sprintf('%s\\slabs',subjPath))
+    load(sprintf('%s\\slabs',simPath))
 else
-    slabs.subj = subjName;
+    slabs.sim = simName;
     slabs.slab = [];
 end
 
@@ -69,7 +69,7 @@ end
 numSlab = length(slabs.slab)+1;
 slabs.slab(numSlab).name = slabName;
 slabs.slab(numSlab).atlasName = atlasName;
-slabs.slab(numSlab).subjName = subjName;
+slabs.slab(numSlab).simName = simName;
 slabs.slab(numSlab).areaName = areaName;
 slabs.slab(numSlab).areaIndex = areaIndex;
 %% Generating slab
@@ -99,9 +99,9 @@ mask(vals) = 2;
 slabs.slab(numSlab).Vertices = vertCoord;
 slabs.slab(numSlab).mask = mask;
 
-save(sprintf('%s\\slabs',subjPath),'slabs');
+save(sprintf('%s\\slabs',simPath),'slabs');
 
-disp_slab(subjName,numSlab);
+disp_slab(simName,numSlab);
 end
 
 %% Functions

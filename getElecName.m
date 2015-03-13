@@ -8,12 +8,11 @@ function elecName = getElecName()
 d = dir('data\\elec');
 listElec= {d.name};
 
-v=0;
-while v==0
+done = false;
+while ~done
     prompt ='Select electrode system:';
-    [elecIndex,v] = listdlg('PromptString',prompt,...
-        'SelectionMode','single',...
-        'ListString',listElec);
+    option = getOption(listElect,prompt,'single');
+    done = option.ok;
 end
-elecName = listElec{elecIndex};
+elecName = listElec{option.ind};
 end

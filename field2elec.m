@@ -7,16 +7,17 @@
 function field2elec(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName;
+    simName = getSimName;
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
 dataPath = 'data';
-subjPath = sprintf('%s\\%s',dataPath,subjName);
+simPath = 'simulations';
+simFolder = sprintf('%s\\%s',simPath,simName);
 elecPath = sprintf('%s\\elec',dataPath);
 
-load(sprintf('%s\\leadfield',subjPath));
+load(sprintf('%s\\leadfield',simFolder));
 lf = leadfield.lf;
 lf = lf-mean(lf);
 disp('Reference for lead field is taken as the average potential');

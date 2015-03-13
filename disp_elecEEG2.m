@@ -8,16 +8,16 @@
 function disp_elecEEG2(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
-    subjPath = sprintf('data\\%s',subjName);
-    sensName = getSensorName(subjPath);
+    simName = getSimName();
+    simPath = sprintf('simulations\\%s',simName);
+    sensName = getSensorName(simPath);
 else
-    subjName = varargin{1};
-    subjPath = sprintf('data\\%s',subjName);
+    simName = varargin{1};
+    simPath = sprintf('simulations\\%s',simName);
     sensName = varargin{2};
 end
 
-load(sprintf('%s\\EEG_%s',subjPath,sensName));
+load(sprintf('%s\\EEG_%s',simPath,sensName));
 ERP = EEG.ERP;
 time = EEG.time';
 
@@ -32,8 +32,8 @@ box off
 end
 
 %% Function
-function sensName = getSensorName(subjPath)
-d = dir(subjPath);
+function sensName = getSensorName(simPath)
+d = dir(simPath);
 listFile= {d.name};
 c=0;
 for i=1:length(listFile)

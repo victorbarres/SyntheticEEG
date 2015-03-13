@@ -3,18 +3,16 @@
 % USC Brain Project
 % Select slabs
 
-function ansSlab = getSlabName(subjName)
-
-load(sprintf('data\\%s\\slabs',subjName));
+function ansSlab = getSlabName(sim_name)
+load(sprintf('simulations\\%s\\slabs', sim_name));
 listSlab = {slabs.slab.name};
 
-v=0;
-while v==0
+done = false;
+while ~done
     prompt ='Select slab:';
-    [slabIndex,v] = listdlg('PromptString',prompt,...
-        'SelectionMode','multiple',...
-        'ListString',listSlab);
+    option = getOption(listSlab,prompt,'multiple');
+    done = option.ok;
 end
-ansSlab.slabName = listSlab(slabIndex);
-ansSlab.slabIndex = slabIndex;
+ansSlab.slabName = listSlab(option.ind);
+ansSlab.slabIndex = option.ind;
 end

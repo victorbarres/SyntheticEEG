@@ -8,11 +8,10 @@
 
 function data_fwdActTimes_Chain()
 disp('ONLY SUPPORTS CHAIN FORWARD PROCESSES A->B->D->E !!')
-dataPath = 'data';
-subjName = getSubjName();
-subjPath = sprintf('%s\\%s',dataPath,subjName);
-load(sprintf('%s\\slabs',subjPath));
-load(sprintf('%s\\dipoles',subjPath));
+simName = getSimName();
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\slabs',simPath));
+load(sprintf('%s\\dipoles',simPath));
 slabNames = dipoles.slabNames;
 
 totalDur = input('Total duration in (ms):\n');
@@ -51,8 +50,8 @@ while ~isempty(slabNames)
     slabNames(f)=[];
 end
 
-save(sprintf('%s\\fwdActiv',subjPath),'fwdActiv');
-disp_fwdActiv(subjName);
+save(sprintf('%s\\fwdActiv',simPath),'fwdActiv');
+disp_fwdActiv(simName);
 end
 
 %% Functions

@@ -10,13 +10,12 @@ listArea = {atlas.area.Label};
 
 % disp('Multiple selections not yet authorized');
 
-v=0;
-while v==0
-    prompt ='Select area:';
-    [areaIndex,v] = listdlg('PromptString',prompt,...
-        'SelectionMode','multiple',...
-        'ListString',listArea);
+done = false;
+while ~done
+    prompt = 'Select area:';
+    option = getOption(listArea,prompt,'multiple');
+    done = option.ok;
 end
-ansArea.areaName = listArea(areaIndex);
-ansArea.areaIndex = areaIndex;
+ansArea.areaName = listArea(option.ind);
+ansArea.areaIndex = option.ind;
 end

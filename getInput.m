@@ -10,5 +10,5 @@ while size(s)==0
     options.WindowStyle='normal';
     s = inputdlg(prompt,dlg_title,num_lines,def,options);
 end
-val = str2double(s{1});
+val = s{1};
 end

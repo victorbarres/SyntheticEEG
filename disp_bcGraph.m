@@ -7,12 +7,12 @@
 function disp_bcGraph(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-load(sprintf('data\\%s\\bcGraph',subjName));
+load(sprintf('simulations\\%s\\bcGraph',simName));
 
 bcGraph.view;
 end

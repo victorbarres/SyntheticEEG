@@ -6,25 +6,25 @@
 function data_randSlab(varargin)
 
 if isempty(varargin)
-    subjName = input('Enter subject name:\n','s');
+    simName = input('Enter simulation name:\n','s');
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
 numVert = input('How many vertices?\n');
 slabName = input('Enter slab name:\n','s');
 
-dataPath = sprintf('data\\%s\\',subjName);
+dataPath = sprintf('simulations\\%s\\',simName);
 
 load(sprintf('%s\\meshes',dataPath));
 cortex = meshes.realMesh(1);
 
-%% Checking if some slabs exist for the subject
+%% Checking if some slabs exist for the simulation
 n = exist(sprintf('%s\\slabs.mat',dataPath),'file');
 if n==2
     load(sprintf('%s\\slabs',dataPath))
 else
-    slabs.subj = subjName;
+    slabs.sim = simName;
     slabs.slab = [];
 end
 
@@ -52,5 +52,5 @@ slabs.slab(numSlab).mask = mask;
 
 save(sprintf('%s\\slabs',dataPath),'slabs');
 
-disp_slab(subjName,slabName);
+disp_slab(simName,slabName);
 end

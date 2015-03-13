@@ -8,15 +8,15 @@
 function data_elecEEG2(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\waveform',subjPath));
-load(sprintf('%s\\leadfield',subjPath));
-load(sprintf('%s\\sensors',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\waveform',simPath));
+load(sprintf('%s\\leadfield',simPath));
+load(sprintf('%s\\sensors',simPath));
 
 listOption = sensors.name;
 prompt = 'Choose electrode:';
@@ -37,9 +37,9 @@ end
 EEG.signals = signals;
 EEG.ERP = sum(signals,1);
 
-fileName = sprintf('%s\\EEG_%s',subjPath,EEG.electrode);
+fileName = sprintf('%s\\EEG_%s',simPath,EEG.electrode);
 save(fileName,'EEG');
-disp_elecEEG(subjName,EEG.electrode);
+disp_elecEEG(simName,EEG.electrode);
 end
 
 %% Functions

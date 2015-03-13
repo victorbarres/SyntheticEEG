@@ -4,7 +4,7 @@
 % Checks the size of the brain mesh and offers the possibility to down
 % sample if num vertices >10000 (OpenMEEG limitations).
 
-function downSample(meshes,subjName,folder)
+function downSample(meshes,simName,folder)
 
 
  n = getVertNum(meshes);
@@ -13,7 +13,7 @@ function downSample(meshes,subjName,folder)
     lim = 10000;
     fprintf('Total number of vertices: %i\n',nTot);
     save(sprintf('%s\\meshes',folder),'meshes');
-    disp_mesh(subjName,'cortex');
+    disp_mesh(simName,'cortex');
     
     
     % Offering possibility to downsample the brain mesh if necessary
@@ -39,7 +39,7 @@ function downSample(meshes,subjName,folder)
             nTot = n(length(n));
             fprintf('Total number of vertices: %i\n',nTot);
             save(sprintf('%s\\meshes',folder),'meshes');
-            disp_mesh(subjName,'cortex');
+            disp_mesh(simName,'cortex');
         else
             flag = false;
         end      
@@ -53,7 +53,7 @@ function downSample(meshes,subjName,folder)
             n = getVertNum(meshes);
             fprintf('# vertices: %i\n',n(m));
             
-            disp_mesh(subjName,name);        
+            disp_mesh(simName,name);        
             r = input('ratio: ');
             
             p = patch('Faces',meshes.mesh(m).Faces,'Vertices',meshes.mesh(m).Vertices,'FaceColor','w');
@@ -65,14 +65,14 @@ function downSample(meshes,subjName,folder)
             n = getVertNum(meshes);
             fprintf('# vertices: %i\n',n(m));
             save(sprintf('%s\\meshes',folder),'meshes');
-            disp_mesh(subjName,name);
+            disp_mesh(simName,name);
         end
     end
     
     n = getVertNum(meshes);
     nTot = n(length(n));
     fprintf('Total number of vertices: %i\n',nTot);
-    disp_mesh(subjName,'fullhead');
+    disp_mesh(simName,'fullhead');
 
 end
 

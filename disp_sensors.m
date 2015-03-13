@@ -6,13 +6,13 @@
 function disp_sensors(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
 % Loading data
-path = sprintf('data\\%s',subjName);
+path = sprintf('simulations\\%s',simName);
 load(sprintf('%s\\meshes.mat',path));
 load(sprintf('%s\\sensors.mat',path));
 
@@ -27,7 +27,7 @@ figure;
 hold;
 ft_plot_mesh(bnd,'facealpha',1,'facecolor','w');
 plotElec(pos)
-set(gcf,'name',sprintf('Sensors for %s: ',subjName));
+set(gcf,'name',sprintf('Sensors for %s: ',simName));
 set(gcf,'color','white')
 light('Position',[100 0 0],'Style','infinite');
 light('Position',[0 0 100],'Style','infinite');

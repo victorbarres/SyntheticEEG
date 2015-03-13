@@ -6,16 +6,16 @@
 function data_elecEEG(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\waveform',subjPath));
-load(sprintf('%s\\grid',subjPath));
-load(sprintf('%s\\sensors',subjPath));
-load(sprintf('%s\\dipoles',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\waveform',simPath));
+load(sprintf('%s\\grid',simPath));
+load(sprintf('%s\\sensors',simPath));
+load(sprintf('%s\\dipoles',simPath));
 leadField = grid.leadfield;
 
 listOption = sensors.name;
@@ -38,9 +38,9 @@ EEG.lfCoeff = lfCoeff;
 EEG.signals = signals;
 EEG.ERP = sum(signals,1);
 
-fileName = sprintf('%s\\EEG_%s',subjPath,EEG.electrode);
+fileName = sprintf('%s\\EEG_%s',simPath,EEG.electrode);
 save(fileName,'EEG');
-disp_elecEEG(subjName,EEG.electrode);
+disp_elecEEG(simName,EEG.electrode);
 end
 
 %% Functions

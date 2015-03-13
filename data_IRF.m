@@ -7,13 +7,13 @@
 function data_IRF(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName;
+    simName = getSimName;
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
-load(sprintf('%s\\fwdActiv',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\fwdActiv',simPath));
 
 time = fwdActiv.time;
 timeRes = time(2)-time(1);
@@ -57,8 +57,8 @@ IRF.f = impulseF;
 IRF.impTime = impTime;
 IRF.param = param;
 
-save(sprintf('%s\\IRF',subjPath),'IRF');
-disp_IRF(subjName);
+save(sprintf('%s\\IRF',simPath),'IRF');
+disp_IRF(simName);
 end
 
 %% Functions

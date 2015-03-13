@@ -1,30 +1,30 @@
 % 05-2012
 % Victor Barres
 % USC Brain Project
-% Script to create the dipoles data structure for a subject
-% Requires for the subject:
+% Script to create the dipoles data structure for a simulation
+% Requires for the simulation:
 % - meshes
 % - slabs
 
 function data_dipoles(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
-    ansSlab = getSlabName(subjName);
+    simName = getSimName();
+    ansSlab = getSlabName(simName);
     slabName = ansSlab.slabName;
     slabIndex = ansSlab.slabIndex;
 elseif length(varargin)==1
-    subjName = varargin{1};
-    ansSlab = getSlabName(subjName);
+    simName = varargin{1};
+    ansSlab = getSlabName(simName);
     slabName = ansSlab.slabName;
     slabIndex = ansSlab.slabIndex;
 else
-    subjName = varargin{1};
+    simName = varargin{1};
     slabIndex = varargin{2};
 end
 
 %% Loading data
-path = sprintf('data\\%s',subjName);
+path = sprintf('simulations\\%s',simName);
 load(sprintf('%s\\slabs.mat',path));
 load(sprintf('%s\\meshes.mat',path));
 
@@ -33,7 +33,7 @@ dipoles.slabIndex = slabIndex;
 dipoles.density = 1;
 dipoles.type = 'single';
 dipoles.dip2slab = [];
-dipoles.subjName = subjName;
+dipoles.simName = simName;
 dipoles.dipCoord = [];
 dipoles.dipNorm = [];
 
@@ -130,7 +130,7 @@ switch opt
 end
 
 save(sprintf('%s\\dipoles.mat',path),'dipoles');
-disp_dipoles(subjName);
+disp_dipoles(simName);
 end
 
 %% Functions

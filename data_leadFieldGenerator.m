@@ -1,33 +1,32 @@
 % 05-2012
 % Victor Barres
 % USC Brain Project
-% Script to create the leadfield for a given subject
+% Script to create the leadfield for a given simulation
 % Uses FieldTrip implementation of OpenMEEG
-% Requires that is available for the subject:
+% Requires that is available for the simulation:
 %       - meshes
 %       - sensors
 %       - dipoles (and therefore slabs)
 % Conductivities can be chosen among the options offered by SynERP
-% leadfield is saved in the subject's data folder.
+% leadfield is saved in the simulation's folder.
 
 function data_leadFieldGenerator(varargin)
 
 diary on;
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-dataPath = 'data';
 
 % Load data
-subjPath = sprintf('%s\\%s',dataPath,subjName);
-load(sprintf('%s\\meshes.mat',subjPath));
-load(sprintf('%s\\dipoles.mat',subjPath));
-load(sprintf('%s\\sensors.mat',subjPath));
-load(sprintf('%s\\cond.mat',subjPath));
+simPath = sprintf('simulations\\%s',simName);
+load(sprintf('%s\\meshes.mat',simPath));
+load(sprintf('%s\\dipoles.mat',simPath));
+load(sprintf('%s\\sensors.mat',simPath));
+load(sprintf('%s\\cond.mat',simPath));
 
 %Define volume structure
 vol = [];
@@ -68,17 +67,17 @@ fprintf('Computing the lead field\n');
 grid = ft_prepare_leadfield(cfg);
 
 % Saving results
-save(sprintf('%s\\cfg',subjPath),'cfg');
-save(sprintf('%s\\grid',subjPath),'grid');
+save(sprintf('%s\\cfg',simPath),'cfg');
+save(sprintf('%s\\grid',simPath),'grid');
 
 numDip = size(cfg.grid.pos,1);
-data_leadfield(subjName,1:numDip);
+data_leadfield(simName,1:numDip);
 if ~strcmp(sensors.type,'Default elec cap')
-    disp_leadfield(subjName,1:numDip);
+    disp_leadfield(simName,1:numDip);
 else
     disp('NO DISPLAY CREATED FOR DEFAULT CAPS YET!!!!')
 end
 
-diary(sprintf('%s\\leadFieldDiary.txt',subjPath));
+diary(sprintf('%s\\leadFieldDiary.txt',simPath));
 diary off;
 end

@@ -6,12 +6,12 @@
 function disp_IRF(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSImName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
-subjPath = sprintf('data\\%s',subjName);
+subjPath = sprintf('simulations\\%s',simName);
 load(sprintf('%s\\IRF',subjPath));
 impulseF = IRF.f;
 impTime = IRF.impTime;
@@ -21,7 +21,7 @@ if ~isempty(param)
     fprintf('Mean = %f\tStd = %f\n',param(1),param(2));
 
 figure;
-set(gcf,'name',sprintf('Impulse Response function for subj: %s',subjName));
+set(gcf,'name',sprintf('Impulse Response function for sim: %s',simName));
 thresh = 10^-5;
 ind1 = find(impulseF>thresh,1,'first');
 ind2 = find(impulseF>thresh,1,'last');

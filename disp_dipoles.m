@@ -6,13 +6,13 @@
 function disp_dipoles(varargin)
 
 if isempty(varargin)
-    subjName = getSubjName();
+    simName = getSimName();
 else
-    subjName = varargin{1};
+    simName = varargin{1};
 end
 
 %% Loading data
-path = sprintf('data\\%s',subjName);
+path = sprintf('simulations\\%s',simName);
 load(sprintf('%s\\meshes.mat',path));
 load(sprintf('%s\\slabs.mat',path));
 load(sprintf('%s\\dipoles.mat',path));
@@ -32,7 +32,7 @@ bnd(2).tri = meshes.mesh(1).Faces;
 % mask(dipoles.vertList) = 2;
 
 % %% Ploting on real brain
-% figure('name',sprintf('Dipole plot for Subj: %s',subjName));
+% figure('name',sprintf('Dipole plot for Sim: %s',simName));
 % set(gcf,'color','white');
 % hold;
 % ft_plot_mesh(bnd(1));
@@ -51,7 +51,7 @@ bnd(2).tri = meshes.mesh(1).Faces;
 
 %% Ploting on brain hull
 sF = input('Scale factor for dipoles ploting(1 for single dipoles):\n');
-figure('name',sprintf('Dipole plot for Subj: %s',subjName));
+figure('name',sprintf('Dipole plot for Sim: %s',simName));
 set(gcf,'color','white');
 hold;
 ft_plot_mesh(bnd(2),'facealpha',0,'facecolor','w');
