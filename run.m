@@ -49,6 +49,7 @@ while ~done_run
             % DONE!
             done_run = true;
     end
+    disp('Press any key to continue.');
     pause;
 end
 end
@@ -166,11 +167,12 @@ while ~done_sim
         case 24
             % Display leadfield
             disp_leadfield(sim_name)
-        case 26
+        case 25
             % DONE!
             done_sim = true;
     end
-    pause
+    disp('Press any key to continue.');
+    pause;
 end
 end
 
