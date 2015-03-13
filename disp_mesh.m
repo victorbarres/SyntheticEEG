@@ -8,6 +8,9 @@ function disp_mesh(varargin)
 if isempty(varargin)
     simName = getSimName();
     meshType = getMeshType(simName);
+elseif length(varargin)==1
+    simName = varargin{1};
+    meshType = getMeshType(simName);
 else
     simName = varargin{1};
     meshType = varargin{2};

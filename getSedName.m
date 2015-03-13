@@ -14,5 +14,5 @@ while ~done
     option = getOption(listSED,prompt,'single');
     done = option.ok;
 end
-sedName = option.name;
+sedName = listSED{option.ind};
 end

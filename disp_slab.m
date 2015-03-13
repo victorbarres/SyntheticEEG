@@ -10,6 +10,11 @@ if isempty(varargin)
     ansSlab = getSlabName(simName);
     slabName = ansSlab.slabName;
     slabIndex = ansSlab.slabIndex;
+elseif length(varargin)==1
+    simName = varargin{1};
+    ansSlab = getSlabName(simName);
+    slabName = ansSlab.slabName;
+    slabIndex = ansSlab.slabIndex;
 else
     simName = varargin{1};
     slabIndex = varargin{2};

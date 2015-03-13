@@ -14,6 +14,11 @@ if isempty(varargin)
     path = sprintf('simulations\\%s\\',simName);
     load(sprintf('%s\\dipoles.mat',path));
     dipList = getDipList(dipoles);
+elseif length(varargin)==1
+    simName = varargin{1};
+    path = sprintf('simulations\\%s\\',simName);
+    load(sprintf('%s\\dipoles.mat',path));
+    dipList = getDipList(dipoles);
 else
     simName = varargin{1};
     dipList = varargin{2};

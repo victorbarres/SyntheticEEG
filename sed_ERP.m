@@ -63,7 +63,6 @@ ERP.polyFit.MU =MU;
 end
 
 %% Function
-
 function condName = getCondName(sedName)
 sedPath = sprintf('data\\SEDs\\%s',sedName);
 load(sprintf('%s\\Conditions',sedPath));

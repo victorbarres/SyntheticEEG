@@ -11,7 +11,7 @@ listElec= {d.name};
 done = false;
 while ~done
     prompt ='Select electrode system:';
-    option = getOption(listElect,prompt,'single');
+    option = getOption(listElec,prompt,'single');
     done = option.ok;
 end
 elecName = listElec{option.ind};
