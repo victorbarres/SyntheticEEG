@@ -112,3 +112,10 @@ Important: The code uses triplot function -> This is the fieldtrip/private funct
 -> So make sure Fieldtrip is on the Matlab path.
 
 Issue with biograph... But really using the module system should be optional..
+
+
+Use run() to call the function
+
+The version of Fieldtrip found in 'external' folder needs to be added to Matlab path.
+The BEM leadfield computation method relies on OpenMEEG. OpenMEEG needs to be installed.
+http://openmeeg.github.io/
