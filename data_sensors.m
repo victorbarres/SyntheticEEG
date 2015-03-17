@@ -61,11 +61,11 @@ switch choice
         
         %% Checking sim and head compatibility
         elecHead = elec.headName;
-        elecSim = elec.simName;
+        elecSubj = elec.subjName;
         simHead = meshes.fromNames{4};
         
         fprintf('Current sim name: %s\n',simName);
-        fprintf('Elec sim name: %s\n',elecSim);
+        fprintf('Elec subj name: %s\n',elecSubj);
         fprintf('Sim head model: %s\n',simHead);
         fprintf('Elec head model: %s\n',elecHead);       
         if ~strcmp(elecHead,simHead)
