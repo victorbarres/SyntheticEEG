@@ -96,35 +96,35 @@ The MNI_T1.mat provides the coordinate transformation matrix MNI_Space -> Cubic_
 	
 **Step5**:
 
-    	Select 'Choose conductivities'. Pick the conductivities value you want.
+	Select 'Choose conductivities'. Pick the conductivities value you want.
     	This creates the 'cond.mat' file in your simulation folder.
 	
 **Step6**:
 
-    Select 'Select sensors'. Pick the types of sensors you want to use. 
-        Top-head -> all the vertices on the top of the skin mesh will be used as sensor positions
-        Default -> Offers default electrodes positions.
-        Random -> Randomly picks positions on the skin mesh as sensor positions.
-        Note: In the current version, only top-head and random can be used to then plot the scalp topography of the leadfield.
-    This creates the 'sensors.mat' file in your simulation folder.
+	Select 'Select sensors'. Pick the types of sensors you want to use. 
+        	Top-head -> all the vertices on the top of the skin mesh will be used as sensor positions
+        	Default -> Offers default electrodes positions.
+        	Random -> Randomly picks positions on the skin mesh as sensor positions.
+        	Note: In the current version, only top-head and random can be used to then plot the scalp topography of the leadfield.
+    	This creates the 'sensors.mat' file in your simulation folder.
 	
 **Step7**:
 
-    Select 'Define modules'.
-    A module represents a set of brain regions.
-    For a given simulations, there is no limitation in the number of modules that can be created.
-    The brain regions associated with the modules will correspond to the area of the cortex in which electric dipoles sources will be placed.
-    This creates the 'slabs.mat' in the simulation folder.
+	Select 'Define modules'.
+    	A module represents a set of brain regions.
+    	For a given simulations, there is no limitation in the number of modules that can be created.
+    	The brain regions associated with the modules will correspond to the area of the cortex in which electric dipoles sources will be placed.
+    	This creates the 'slabs.mat' in the simulation folder.
 	
 **Step8**:
 
-    Select 'Create dipoles'
-    This generates the electric dipole sources associated with the modules
-    Select the modules for which you would like to generate dipoles.
-    You can either choose to have a single dipole per module or distributed dipoles.
-    Note: Single dipole should be used with caution...Approximation only valid for brain regions where curvature is negligible.
-    For distributed dipoles, based on the density, random vertices in brain regions are chose to position dipoles. A dipole's norm is proportional to the area of the adjacent triangles in the mesh (to check...)
-    This creates the 'dipoles.mat' in the simulation folder.
+	Select 'Create dipoles'
+    	This generates the electric dipole sources associated with the modules
+    	Select the modules for which you would like to generate dipoles.
+    	You can either choose to have a single dipole per module or distributed dipoles.
+    	Note: Single dipole should be used with caution...Approximation only valid for brain regions where curvature is negligible.
+    	For distributed dipoles, based on the density, random vertices in brain regions are chose to position dipoles. A dipole's norm is proportional to the area of the adjacent triangles in the mesh (to check...)
+    	This creates the 'dipoles.mat' in the simulation folder.
 
 
 At this point, the simulation folder contains:
@@ -138,41 +138,40 @@ The key data required to compute the leadfield are: 'meshes.mat', 'cond.mat', 's
 Defining modules is an easy way to position dipoles sources, but any other script generating a 'dipoles.mat' file could be used.
 
 **Step9**:
-
-    Select 'Create leadfield'.
-    This generates the leadfield based on the data contained in
-        - 'meshes.mat'
-        - 'cond.mat'
-        - 'sensors.mat'
-        - 'dipoles.mat'
-    It uses the OpenMEEG C++ BEM implementation combined with the Matlab interface provided by FieldTrip.
-    This creates 
-        - the 'cfg.mat' file in the simulation folder that contains the configuration information used by FieldTrip to run the forward model.
-        - the 'grid.mat' file that contains the output of the BEM forward model.
-        - the 'leadfield.mat' which contains the leadfield.
-        - the 'leadFieldDiary.txt' that contains details on the computation.
+	Select 'Create leadfield'.
+    	This generates the leadfield based on the data contained in
+        	- 'meshes.mat'
+        	- 'cond.mat'
+        	- 'sensors.mat'
+        	- 'dipoles.mat'
+    	It uses the OpenMEEG C++ BEM implementation combined with the Matlab interface provided by FieldTrip.
+    	This creates 
+        	- the 'cfg.mat' file in the simulation folder that contains the configuration information used by FieldTrip to run the forward model.
+        	- the 'grid.mat' file that contains the output of the BEM forward model.
+        	- the 'leadfield.mat' which contains the leadfield.
+        	- the 'leadFieldDiary.txt' that contains details on the computation.
 
 What is missing is the dipole amplitudes dA(t).
 This could be provided directly by the user (NOTE: WRITE FUNCTION TO MAKE THIS EASY!!!)
 
 The model in its current form allows for the simulation of forward activation of modules (see SyntheticERP paper).
-'Create circuit' -> Allows the user to build a feedforward brain circuit of modules.
-'Create forward activation values' -> Allows the user, based on the circuit, to define a rudimentary feedforward activation flow pattern.
-'Create IRF' -> Allows the user to create a impulse response function.
-'Create boxcar timecourse' -> Uses the feedforward activation flow pattern in modules to generate boxcar dA_boxcar(t) for each dipole.
-'Create waveform timecourse' -> Computes the convolution dA_boxcar(t)*IRF to generate dipoles final waveform amplitudes timcourses dA(t).
+- 'Create circuit' -> Allows the user to build a feedforward brain circuit of modules.
+- 'Create forward activation values' -> Allows the user, based on the circuit, to define a rudimentary feedforward activation flow pattern.
+- 'Create IRF' -> Allows the user to create a impulse response function.
+- 'Create boxcar timecourse' -> Uses the feedforward activation flow pattern in modules to generate boxcar dA_boxcar(t) for each dipole.
+- 'Create waveform timecourse' -> Computes the convolution dA_boxcar(t)*IRF to generate dipoles final waveform amplitudes timcourses dA(t).
 
 
 One the leadfield and the dA(t) are available, the final EEG signal can be computed simply by multiplying the leadfield matrix with dA(t).
 
 **Step 10**:
-
-    To create EEG signal from leadfield + dA(t) information, used 'Create EEG data for an electrode'.
-    This requires that a default sensors position has been chosen.
-    NOTE: SCRIPT EASY TO MODIFY TO GET THE EEG DATA IN GENERAL! TO DO!
+	To create EEG signal from leadfield + dA(t) information, used 'Create EEG data for an electrode'.
+    	This requires that a default sensors position has been chosen.
+	NOTE: SCRIPT EASY TO MODIFY TO GET THE EEG DATA IN GENERAL! TO DO!
     
 
 ## More about run()
+
 - A new simulation can be created or an old one loaded. Once a simulation loaded, any of the previous steps can be re-run to modify the simulation.
 - Once a simulation is loaded, all the display option allow the user to visualize the information contained in the simulatoin folder.
 - The run module also allows the user to visualize the meshes, conductivity data, electrode options, atlases, as well as some ERP data.
@@ -181,7 +180,7 @@ One the leadfield and the dA(t) are available, the final EEG signal can be compu
 
 TO BE DONE! (Old...)
 
-gifti_convert.m
+**gifti_convert.m**
 
 	This function converts a gifti structure into a triangle mesh structure
 	OpenMEEG friendly!!
@@ -195,7 +194,7 @@ gifti_convert.m
 	Matlab readable formats.
 
 
-createMesh.m
+**createMesh.m**
 
 	Input = gifti_mesh_name (no extension)
 	Converts a gifti format into a matlab structure.
@@ -209,7 +208,7 @@ createMesh.m
 
 	
 
-getDipoles.m
+**getDipoles.m**
 
 	Input = (brain_mesh,mask)
 	This function returns the positions and orientations of dipoles for a given
@@ -217,6 +216,6 @@ getDipoles.m
 	Slabs are defined as .nii masks in cube coordinates from wfu_pickatlas.
 	Mesh should be given as the output of the CreateMesh.m script
 
-forwardModel.m
+**forwardModel.m**
 	Does everything else!!!
 	Needs to be refactored!
