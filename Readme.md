@@ -6,29 +6,28 @@ Last updated
 2015-03-16
 
 1. Software dependencies.
-
-	* FieldTrip
+ * FieldTrip
 	
 Source: http://fieldtrip.fcdonders.nl/
 
 FieldTrip provides the Matlab environment for EEG processing.
 
 In particular, FieldTrip Matlab functions are used used for:
-		* 3D Mesh display
-		* As an interface with the OpenMEEG C++ implementation of the forward model.
+	* 3D Mesh display
+	* As an interface with the OpenMEEG C++ implementation of the forward model.
 		
-Fieldtrip folder, found in external/dependencies/, must be placed on the Matlab path.
+Fieldtrip folder, found in **external/dependencies/**, must be placed on the Matlab path.
 
-	* OpenMEEG
+ * OpenMEEG
 
 Source: http://openmeeg.github.io/
 
 OpenMEEG must be installed and on the system's path in order to be able to use it to compute the
 forward model solution using their BEM algorithm.
 
-OpenMEEG in 'external/OpenMEEG/'(?)
+OpenMEEG in **external/OpenMEEG/**(?)
 
-    * SPM
+ * SPM
 	
 SPM has been used mostly through some of the external packages it provides (such as PickAtlas), but also SyntheticEEG 
 uses the Colin27MNI head meshes that are provided with SPM in gifti format.
