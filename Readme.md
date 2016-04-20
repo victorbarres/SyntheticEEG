@@ -8,6 +8,7 @@ Last updated
 1. Software dependencies.
 
 	1. FieldTrip
+	
 http://fieldtrip.fcdonders.nl/
 FieldTrip provides the Matlab environment for EEG processing.
 In particular, FieldTrip Matlab functions are used used for:
@@ -16,6 +17,7 @@ In particular, FieldTrip Matlab functions are used used for:
 Fieldtrip folder, found in external/dependencies/, must be placed on the Matlab path.
 
 	2. OpenMEEG
+	
 OpenMEEG must be installed and on the system's path in order to be able to use it to compute the
 forward model solution using their BEM algorithm.
 http://openmeeg.github.io/
@@ -23,11 +25,13 @@ http://openmeeg.github.io/
 OpenMEEG in 'external/OpenMEEG/'?????
 
     3. SPM
+	
 SPM has been used mostly through some of the external packages it provides (such as PickAtlas), but also SyntheticEEG 
 uses the Colin27MNI head meshes that are provided with SPM in gifti format.
 Those are found in 'external/SPM8/gifti/'.
 
 	4. PickAtlas
+	
 Pickatlas based on Talairach daemon and provided by ANSIR laboratory is used to extract the masks for brain regions.
 http://fmri.wfubmc.edu/software/PickAtlas
 Synthetic EEG also uses the wfu_pickatlas matlab function to translate Colin27 bewteen MNI to Cube coordinates.
@@ -50,6 +54,7 @@ Meshes folder provides the .mat files associated with the .gii in the gifti fold
 using gifti_convert.
 
 	2. Masks
+	
 We provide a series of masks for brain regions created using wfu pickatlas (see above).
 They are given in MNI space, and therefore need to be converted to Cubic space.'
 The MNI_T1.mat provides the coordinate transformation matrix MNI_Space -> Cubic_Space
