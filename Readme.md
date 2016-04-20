@@ -148,6 +148,7 @@ The key data required to compute the leadfield are: 'meshes.mat', 'cond.mat', 's
 Defining modules is an easy way to position dipoles sources, but any other script generating a 'dipoles.mat' file could be used.
 
 **Step9**:
+
 	Select 'Create leadfield'.
     	This generates the leadfield based on the data contained in
         	- 'meshes.mat'
@@ -175,6 +176,7 @@ The model in its current form allows for the simulation of forward activation of
 One the leadfield and the dA(t) are available, the final EEG signal can be computed simply by multiplying the leadfield matrix with dA(t).
 
 **Step 10**:
+
 	To create EEG signal from leadfield + dA(t) information, used 'Create EEG data for an electrode'.
     	This requires that a default sensors position has been chosen.
 	NOTE: SCRIPT EASY TO MODIFY TO GET THE EEG DATA IN GENERAL! TO DO!
