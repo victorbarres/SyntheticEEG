@@ -64,15 +64,25 @@ The MNI_T1.mat provides the coordinate transformation matrix MNI_Space -> Cubic_
 
 ## Install
 
-**Step1**: Unzip the SyntheticERP folder.
+**Step1**:
+	
+	Unzip the SyntheticERP folder.
 
-**Step2**: Install OpenMEEG. Make sure it's 'bin' folder is on your system path.
+**Step2**:
+	
+	Install OpenMEEG. Make sure it's 'bin' folder is on your system path.
 
-**Step3**: In the SyntheticERP folder, add to your Matlab path: 'external/dependencies/fieldtrip-20120307', 'external/arrow', 'external/OpenMEEG'??, 'external/SPM8', 'external/wfu_pickatlas'
+**Step3**:
 
-**Step4**: Set the SyntheticERP folder as your current workspace.
+	In the SyntheticERP folder, add to your Matlab path: 'external/dependencies/fieldtrip-20120307', 'external/arrow', 'external/OpenMEEG'??, 'external/SPM8', 'external/wfu_pickatlas'
 
-**Step5**: You are ready! Use run.m to load or create a new simulation.
+**Step4**:
+
+	Set the SyntheticERP folder as your current workspace.
+
+**Step5**:
+
+	You are ready! Use run.m to load or create a new simulation.
 
 ## Create a new simulation
 
