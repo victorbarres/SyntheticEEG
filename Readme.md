@@ -1,9 +1,8 @@
-# SynERP 2012
-## USC Brain Project
-by Victor Barres
+# Synthetic EEG
 
-Last updated
-2015-03-16
+by Victor Barres (Last updated 2015-03-16)
+
+*Barrès, V., Simons III, A., & Arbib, M. (2013). Synthetic event-related potentials: A computational bridge between neurolinguistic models and experiments. Neural Networks, 37, 66–92. http://doi.org/10.1016/j.neunet.2012.09.021*
 
 ## Software dependencies.
 ### FieldTrip
